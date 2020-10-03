@@ -1,14 +1,16 @@
-﻿using Newtonsoft.Json;
-using RPGConsoleTutorial.Adventures;
+﻿using RPGConsoleTutorial.Adventures;
+using RPGConsoleTutorial.Entities;
 using RPGConsoleTutorial.Game;
 using System;
-using System.IO;
 
 namespace RPGConsoleTutorial
 {
     class Program
     {
-        private static GameService gameService = new GameService();
+        private static AdventureService adventureService = new AdventureService();
+        private static CharacterService characterService = new CharacterService();
+        private static GameService gameService = 
+            new GameService(adventureService, characterService);
         static void Main(string[] args)
         {
             MakeTitle();
@@ -49,7 +51,7 @@ namespace RPGConsoleTutorial
                         inputValid = true;
                         break;
                     default:
-                        Console.WriteLine("\nYou have chosen....poorly!");
+                        Console.WriteLine("\nYou have chosen....poorly! Please try again.");
                         MakeMenuOptions();
                         inputValid = false;
                         break;
