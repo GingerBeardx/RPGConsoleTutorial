@@ -20,25 +20,60 @@ namespace RPGConsoleTutorial
             Console.WriteLine("*      │  │ ││││└─┐│ ││  ├┤   │  ├┬┘├─┤││││       *");
             Console.WriteLine("*      └─┘└─┘┘└┘└─┘└─┘┴─┘└─┘  └─┘┴└─┴ ┴└┴┘┴─┘     *");
             Console.WriteLine("*                                                 *");
-            Console.WriteLine("***************************************************");
+            Console.WriteLine("***************************************************\n\n");
         }
         private static void MakeMainMenu()
         {
-            Console.WriteLine("\n\n(S)tart a new game");
+            MakeMenuOptions();            
+            var inputValid = false;
+            
+            while (!inputValid)
+            {
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case "S":
+                        StartGame();
+                        inputValid = true;
+                        break;
+                    case "C":
+                        CreateCharacter();
+                        inputValid = true;
+                        break;
+                    case "L":
+                        LoadGame();
+                        inputValid = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nYou have chosen....poorly!");
+                        MakeMenuOptions();
+                        inputValid = false;
+                        break;
+                }                
+            }
+        }
+
+        private static void MakeMenuOptions()
+        {
+            Console.WriteLine("\n(S)tart a new game");
             Console.WriteLine("(L)Load a saved game");
             Console.WriteLine("(C)reate a new character");
-            var MainMenuChoice = Console.ReadLine().ToUpper();
+        }
 
-            Console.WriteLine($"YOU CHOSE - {MainMenuChoice}");
+        private static void LoadGame()
+        {
+            var basePath = $"{AppDomain.CurrentDomain.BaseDirectory}adventures";
+            var 
+            Console.WriteLine("You are loading a game, snap!");
+        }
 
-            if (MainMenuChoice == "S" || MainMenuChoice == "L" || MainMenuChoice == "C")
-            {
-                Console.WriteLine("Thanks!  This choice did nothing!");
-            }
-            else
-            {
-                Console.WriteLine("You have chosen....poorly!");
-            }
+        private static void StartGame()
+        {
+            Console.WriteLine("You started the game, great job!");
+        }
+
+        private static void CreateCharacter()
+        {
+            Console.WriteLine("You are creating a character, yay!");
         }
     }
 }
