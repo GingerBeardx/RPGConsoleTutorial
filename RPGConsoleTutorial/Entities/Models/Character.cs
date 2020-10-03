@@ -16,6 +16,7 @@ namespace RPGConsoleTutorial.Entities.Models
         public int ArmorClass;
         public List<IItem> Inventory;
         public int HitPoints;
+        public CharacterClass Class;
     }
 
     public class Abilities
@@ -26,5 +27,13 @@ namespace RPGConsoleTutorial.Entities.Models
         public int Inteligence;
         public int Wisdom;
         public int Charisma;
+    }
+
+    public enum CharacterClass
+    {
+        Fighter,
+        Theif,
+        Mage,
+        Priest
     }
 }
