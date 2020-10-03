@@ -1,10 +1,14 @@
-﻿using RPGConsoleTutorial.Adventures;
+﻿using Newtonsoft.Json;
+using RPGConsoleTutorial.Adventures;
+using RPGConsoleTutorial.Game;
 using System;
+using System.IO;
 
 namespace RPGConsoleTutorial
 {
     class Program
     {
+        private static GameService gameService = new GameService();
         static void Main(string[] args)
         {
             MakeTitle();
@@ -33,7 +37,7 @@ namespace RPGConsoleTutorial
                 switch (Console.ReadLine().ToUpper())
                 {
                     case "S":
-                        StartGame();
+                        gameService.StartGame();
                         inputValid = true;
                         break;
                     case "C":
@@ -62,15 +66,7 @@ namespace RPGConsoleTutorial
 
         private static void LoadGame()
         {
-            var basePath = $"{AppDomain.CurrentDomain.BaseDirectory}adventures";
-            var initialAdventure = new Adventure();
-            
-            Console.WriteLine("You are loading a game, snap!");
-        }
-
-        private static void StartGame()
-        {
-            Console.WriteLine("You started the game, great job!");
+            Console.WriteLine("You are loading a game, great job!");
         }
 
         private static void CreateCharacter()
