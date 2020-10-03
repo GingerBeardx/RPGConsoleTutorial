@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGConsoleTutorial.Adventures;
+using System;
 
 namespace RPGConsoleTutorial
 {
@@ -62,7 +63,8 @@ namespace RPGConsoleTutorial
         private static void LoadGame()
         {
             var basePath = $"{AppDomain.CurrentDomain.BaseDirectory}adventures";
-            var 
+            var initialAdventure = new Adventure();
+            
             Console.WriteLine("You are loading a game, snap!");
         }
 
