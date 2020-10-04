@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RPGConsoleTutorial.Entities.Models
 {
-    public class Character
+    public class Character : Entity
     {
         public string Name;
         public int Level;
@@ -15,7 +15,6 @@ namespace RPGConsoleTutorial.Entities.Models
         public bool IsAlive;
         public int ArmorClass;
         public List<IItem> Inventory;
-        public int HitPoints;
         public CharacterClass Class;
     }
 

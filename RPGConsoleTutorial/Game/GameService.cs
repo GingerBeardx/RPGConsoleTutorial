@@ -1,20 +1,20 @@
 ﻿using RPGConsoleTutorial.Adventures;
 using RPGConsoleTutorial.Adventures.Interfaces;
-using RPGConsoleTutorial.Entities;
 using RPGConsoleTutorial.Entities.Interfaces;
 using RPGConsoleTutorial.Entities.Models;
+using RPGConsoleTutorial.Game.Interfaces;
 using System;
 
 namespace RPGConsoleTutorial.Game
 {
-    public class GameService
+    public class GameService : IGameService
     {
         private IAdventureService adventureService;
         private ICharacterService characterService;
 
         private Character character;
 
-        public GameService(IAdventureService AdventureService, 
+        public GameService(IAdventureService AdventureService,
             ICharacterService CharacterService)
         {
             adventureService = AdventureService;
@@ -28,20 +28,20 @@ namespace RPGConsoleTutorial.Game
                 {
                     adventure = adventureService.GetInitialAdventure();
                 }
-                
+
                 Console.Clear();
                 Console.WriteLine();
 
                 // Create title banner
                 for (int i = 0; i < adventure.Title.Length + 4; i++)
                 {
-                    Console.Write("*");                
+                    Console.Write("*");
                 }
                 Console.Write("\n");
                 Console.Write($"| {adventure.Title} |\n");
                 for (int i = 0; i < adventure.Title.Length + 4; i++)
                 {
-                    Console.Write("*");                   
+                    Console.Write("*");
                 }
                 Console.Write("\n");
 
@@ -50,7 +50,7 @@ namespace RPGConsoleTutorial.Game
                 Console.WriteLine($"\n{adventure.Description.ToUpper()}");
                 Console.BackgroundColor = ConsoleColor.Cyan;
                 Console.ForegroundColor = ConsoleColor.Black;
-                                
+
                 var charactersInRange = characterService.GetCharactersInRange(adventure.MinLevel, adventure.MaxLevel);
 
                 if (charactersInRange.Count == 0)
@@ -70,7 +70,9 @@ namespace RPGConsoleTutorial.Game
                 }
                 character = characterService.LoadCharacter(charactersInRange[Convert.ToInt32(Console.ReadLine())].Name);
                 Console.WriteLine($"You have chosen {character.Name} to go on this adventure!");
-                
+
+                Monster myMonster = new Monster(); // Don't need - kill for next level
+
             }
             catch (Exception ex)
             {
